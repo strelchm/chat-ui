@@ -1,10 +1,32 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <button @click="logout">logout</button>
+    <router-link to="/">Чаты</router-link> |
+    <router-link to="/about">Пользователи</router-link>
   </div>
   <router-view/>
 </template>
+
+<script>
+  import {useStore} from "vuex";
+  import {useRouter} from "vue-router";
+
+  export default {
+    setup(){
+      const store = useStore();
+      const router = useRouter();
+
+      let logout = ()=> {
+        store.dispatch("logOut"); // logout
+        router.push('/login');
+      };
+
+      return {
+        logout
+      }
+    }
+  }
+</script>
 
 <style>
 #app {
