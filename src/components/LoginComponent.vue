@@ -1,15 +1,14 @@
 <template>
-    <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" v-model="input.login" required>
+    <div class="container" style="display: flex; flex-direction: column; justify-items: center; align-items: center; height:100%">
+        <div style="align-self: center; justify-self:center;">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" v-model="input.login" required>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" v-model="input.password" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" v-model="input.password" required>
 
-        <button type="submit" v-on:click="login">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+            <v-btn type="submit" v-on:click="login" style="align-self: center !important; justify-self:center !important;">Login</v-btn>
+        </div>
     </div>
 </template>
 
@@ -17,6 +16,7 @@
     import {useStore} from "vuex";
     import {LoginRequestDto} from "@/api";
     import {reactive} from "vue";
+    import {useRouter} from "vue-router";
 
     class LoginDtoImpl implements LoginRequestDto {
     }
@@ -25,9 +25,19 @@
         name: "LoginComponent",
         setup() {
             const store = useStore();
+            const router = useRouter();
             let input: LoginRequestDto = reactive(new LoginDtoImpl());
             let login = () => {
-                store.dispatch("logIn", input);
+                store.dispatch("logIn", input)
+                    .then(() => {
+                        router.push("/") // редирект на домашнюю странцу todo {strelchm}
+                        // ctx.root.$router.go(-1); // редирект на предыдущую страницу
+                    })
+                    .catch((err: any) => {
+                        console.error("error during login action: " + err);
+                    })
+                    .finally(() => {
+                    });
             }
             return {
                 login,

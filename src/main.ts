@@ -1,5 +1,6 @@
-import axios from 'axios';
 import { createApp } from 'vue'
+import axios from 'axios';
+import vuetify from './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -59,7 +60,7 @@ axios.interceptors.response.use(
 );
 
 router.beforeEach((to, from, next) => {
-    console.log("--->")
+        console.log("--->")
         const token: string | null = localStorage.getItem("token");
         const isLoginPage: boolean = to.path.localeCompare('/login') === 0;
         // store.dispatch('setCurrentPageInfo', new CurrentPagePayload(to.meta.title, to.meta.prev));
@@ -71,6 +72,15 @@ router.beforeEach((to, from, next) => {
     }
 );
 
-const token = localStorage.getItem('token');
+if(localStorage.getItem("token")) {
+    store.dispatch("updateCredentials");
+}
 
-createApp(App).use(store).use(router).mount('#app')
+
+store.dispatch("wsConnect");
+
+createApp(App)
+  .use(router)
+  .use(store)
+  .use(vuetify)
+  .mount('#app')

@@ -1,26 +1,35 @@
 <template>
-    <div style="background-color: #04AA6D">
-        <div style="border-color: darkred" class="card" v-for="room in rooms" :key="room.id">
-            <div class="additional">
-                <div class="user-card">
-                    <p>{{room.name}}</p>
-                    <p>{{room.type}}</p>
-                </div>
+    <div class="cards">
+        <div class="card" v-for="room in rooms" :key="room.id">
+            <div class="card-title">
+                <div class="card-status">Создана: {{parseDateFromUtc(room.created)}}</div>
             </div>
+            <p :class="'card-status ' + getChipStyleByType(room.type)" class="card-chip">{{room.type}}</p>
+            <div style="font-size: 40px">{{room.name}}</div>
+            <v-spacer></v-spacer>
+            <v-btn @click="goToMessagePage(room.id)">Сообщения</v-btn>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import {RoomDto} from "../api/models";
+    import {RoomDto, RoomDtoTypeEnum} from "../api/models";
     import {ref} from "vue";
     import {Configuration, RoomControllerApi} from "../api";
     import axios from "axios";
     import {Ref} from "@vue/reactivity";
+    import {useRouter} from "vue-router";
+    import {useStore} from "vuex";
+    import {Message} from "webstomp-client";
+    import {parseDateFromUtc} from "@/components/common";
 
     export default {
         name: "Home",
+        components: {},
         setup() {
+            const router = useRouter();
+            const store = useStore();
+
             const API: RoomControllerApi = new RoomControllerApi(
                 new Configuration(),
                 axios.defaults.baseURL,
@@ -33,6 +42,15 @@
                 API.getAllRoomsUsingGET()
                     .then((response) => {
                         rooms.value = response.data;
+
+                        rooms.value.forEach(v => {
+                            // store.dispatch("subscribe", v.id)
+                            const topic: string = "/chat/room/" + v.id;
+                            // context.rootState.instance.session
+                            store.getters.getStompClient.subscribe(topic, (tick: Message) => {
+                                store.dispatch("setMessages", {roomId: v.id, messages: JSON.parse(tick.body)});
+                            });
+                        })
                     })
                     .catch(error => {
                         console.error("rooms get error : " + error);
@@ -42,10 +60,25 @@
                     });
             };
 
-            loadData();
+            let goToMessagePage = (roomId: number) => {
+                router.push("/rooms/" + roomId + "/messages")
+            }
 
+            let getChipStyleByType = (type: RoomDtoTypeEnum) => {
+                switch (type) {
+                    case RoomDtoTypeEnum.PUBLIC:
+                        return 'private-card-chip';
+                    case RoomDtoTypeEnum.PRIVATE:
+                        return 'public-card-chip';
+                }
+            }
+
+            loadData();
             return {
-                rooms
+                rooms,
+                goToMessagePage,
+                parseDateFromUtc,
+                getChipStyleByType
             }
         }
     }
@@ -66,8 +99,14 @@
         -webkit-transform: translate(-50%, -50%);
     }
 
+    .cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
     .card {
-        width: 450px;
+        min-width: 450px;
         height: 250px;
         background-color: #fff;
         background: linear-gradient(#f8f8f8, #fff);
@@ -76,158 +115,45 @@
         overflow: hidden;
         position: relative;
         margin: 1.5rem;
-    }
-
-    .card h1 {
-        text-align: center;
-    }
-
-    .card .additional {
-        position: absolute;
-        width: 150px;
-        height: 100%;
-        background: linear-gradient(#dE685E, #EE786E);
-        transition: width 0.4s;
-        overflow: hidden;
-        z-index: 2;
-    }
-
-    .card.green .additional {
-        background: linear-gradient(#92bCa6, #A2CCB6);
-    }
-
-
-    .card:hover .additional {
-        width: 100%;
-        border-radius: 0 5px 5px 0;
-    }
-
-    .card .additional .user-card {
-        width: 150px;
-        height: 100%;
-        position: relative;
-        float: left;
-    }
-
-    .card .additional .user-card::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 10%;
-        right: -2px;
-        height: 80%;
-        border-left: 2px solid rgba(0, 0, 0, 0.025);
-    }
-
-    .card .additional .user-card .level,
-    .card .additional .user-card .points {
-        top: 15%;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 0.75em;
-        font-weight: bold;
-        background: rgba(0, 0, 0, 0.15);
-        padding: 0.125rem 0.75rem;
-        border-radius: 100px;
-        white-space: nowrap;
-    }
-
-    .card .additional .user-card .points {
-        top: 85%;
-    }
-
-    .card .additional .user-card svg {
-        top: 50%;
-    }
-
-    .card .additional .more-info {
-        width: 300px;
-        float: left;
-        position: absolute;
-        left: 150px;
-        height: 100%;
-    }
-
-    .card .additional .more-info h1 {
-        color: #fff;
-        margin-bottom: 0;
-    }
-
-    .card.green .additional .more-info h1 {
-        color: #224C36;
-    }
-
-    .card .additional .coords {
-        margin: 0 1rem;
-        color: #fff;
-        font-size: 1rem;
-    }
-
-    .card.green .additional .coords {
-        color: #325C46;
-    }
-
-    .card .additional .coords span + span {
-        float: right;
-    }
-
-    .card .additional .stats {
-        font-size: 2rem;
         display: flex;
-        position: absolute;
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem;
-        top: auto;
-        color: #fff;
+        flex-direction: column;
     }
 
-    .card.green .additional .stats {
-        color: #325C46;
+    .card-status {
+        align-self: flex-end;
+        justify-self: flex-end;
+        font-size: .8em;
     }
 
-    .card .additional .stats > div {
-        flex: 1;
-        text-align: center;
+    .card-title {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-items: flex-start;
+        align-items: flex-start;
     }
 
-    .card .additional .stats i {
-        display: block;
+    .card-chip {
+        display: inline-block;
+        padding: 0 25px;
+        width: 100px;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+        border-radius: 25px;
+        background-color: #f1f1f1;
     }
 
-    .card .additional .stats div.title {
-        font-size: 0.75rem;
-        font-weight: bold;
-        text-transform: uppercase;
+    .private-card-chip {
+        background-color: darksalmon;
     }
 
-    .card .additional .stats div.value {
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
+    .public-card-chip {
+        background-color: aquamarine;
     }
 
-    .card .additional .stats div.value.infinity {
-        font-size: 2.5rem;
+    v-btn {
+        justify-self: flex-end;
+        align-self: flex-end;
     }
-
-    .card .general {
-        width: 300px;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        box-sizing: border-box;
-        padding: 1rem;
-        padding-top: 0;
-    }
-
-    .card .general .more {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        font-size: 0.9em;
-    }
-
 </style>
