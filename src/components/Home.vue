@@ -1,3 +1,4 @@
+import {RoomDtoTypeEnum} from "@/api";
 <template>
     <div class="cards">
         <div class="card" v-for="room in rooms" :key="room.id">
@@ -43,14 +44,19 @@
                     .then((response) => {
                         rooms.value = response.data;
 
-                        rooms.value.forEach(v => {
-                            // store.dispatch("subscribe", v.id)
-                            const topic: string = "/chat/room/" + v.id;
-                            // context.rootState.instance.session
-                            store.getters.getStompClient.subscribe(topic, (tick: Message) => {
-                                store.dispatch("setMessages", {roomId: v.id, messages: JSON.parse(tick.body)});
+                        if (!store.getters.isSubscribed) {
+                            rooms.value.forEach(v => {
+                                // store.dispatch("subscribe", v.id)
+                                const topic: string = v.type === RoomDtoTypeEnum.BOT ?
+                                    "/user/chat/room/00000000-0000-0000-0000-000000000000" :
+                                    "/chat/room/" + v.id;
+                                // context.rootState.instance.session
+                                store.getters.getStompClient.subscribe(topic, (tick: Message) => {
+                                    store.dispatch("setMessages", {roomId: v.id, messages: JSON.parse(tick.body)});
+                                });
                             });
-                        })
+                            store.dispatch("setSubscribed", true)
+                        }
                     })
                     .catch(error => {
                         console.error("rooms get error : " + error);

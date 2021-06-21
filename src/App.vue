@@ -21,10 +21,9 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue'
+    import {computed, defineComponent} from 'vue'
     import {useStore} from "vuex";
     import {useRouter} from "vue-router";
-    import {computed} from 'vue';
 
     export default defineComponent({
         name: 'App',
@@ -39,6 +38,29 @@
                 store.dispatch("logOut"); // logout
                 router.push('/login');
             };
+
+            // const API: UserControllerApi = new UserControllerApi(
+            //     new Configuration(),
+            //     axios.defaults.baseURL,
+            //     axios
+            // );
+
+            // let loadData = () => {
+            //     API.getSelfUsingPOST()
+            //         .then((response) => {
+            //             store.dispatch("updateUser", response.data);
+            //
+            //             console.log(response.data)
+            //         })
+            //         .catch(error => {
+            //             console.error("rooms get error : " + error);
+            //         })
+            //         .finally(() => {
+            //             // alert("loading finished!");
+            //         });
+            // };
+            //
+            // loadData();
 
             return {
                 logout,

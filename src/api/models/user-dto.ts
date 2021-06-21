@@ -78,6 +78,7 @@ export enum UserDtoStatusEnum {
     */
 export enum UserDtoUserAppRoleEnum {
     ADMIN = 'ADMIN',
+    BOT = 'BOT',
     CLIENT = 'CLIENT'
 }
 

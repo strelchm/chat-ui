@@ -43,11 +43,11 @@ export const MessageControllerApiAxiosParamCreator = function (configuration?: C
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMessageUsingPOST: async (roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        createMessageUsingPOST: async (roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'roomId' is not null or undefined
             assertParamExists('createMessageUsingPOST', 'roomId', roomId)
             // verify required parameter 'dto' is not null or undefined
@@ -122,11 +122,11 @@ export const MessageControllerApiAxiosParamCreator = function (configuration?: C
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteMessageUsingDELETE: async (id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        deleteMessageUsingDELETE: async (id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteMessageUsingDELETE', 'id', id)
             // verify required parameter 'roomId' is not null or undefined
@@ -205,11 +205,11 @@ export const MessageControllerApiAxiosParamCreator = function (configuration?: C
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllMessagesUsingGET: async (roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        getAllMessagesUsingGET: async (roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'roomId' is not null or undefined
             assertParamExists('getAllMessagesUsingGET', 'roomId', roomId)
             const localVarPath = `/api/rooms/{roomId}/messages`
@@ -307,11 +307,11 @@ export const MessageControllerApiAxiosParamCreator = function (configuration?: C
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMessageByIdUsingGET: async (id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        getMessageByIdUsingGET: async (id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getMessageByIdUsingGET', 'id', id)
             // verify required parameter 'roomId' is not null or undefined
@@ -385,11 +385,11 @@ export const MessageControllerApiAxiosParamCreator = function (configuration?: C
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMessageUsingPUT: async (id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        updateMessageUsingPUT: async (id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateMessageUsingPUT', 'id', id)
             // verify required parameter 'roomId' is not null or undefined
@@ -477,11 +477,11 @@ export const MessageControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMessageUsingPOST(roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IdDto>> {
+        async createMessageUsingPOST(roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IdDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createMessageUsingPOST(roomId, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -496,11 +496,11 @@ export const MessageControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteMessageUsingDELETE(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteMessageUsingDELETE(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMessageUsingDELETE(id, roomId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -521,11 +521,11 @@ export const MessageControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllMessagesUsingGET(roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageMessageDto>> {
+        async getAllMessagesUsingGET(roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageMessageDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllMessagesUsingGET(roomId, offset, paged, pageNumber, pageSize, sortSorted, sortUnsorted, unpaged, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -540,11 +540,11 @@ export const MessageControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMessageByIdUsingGET(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageDto>> {
+        async getMessageByIdUsingGET(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMessageByIdUsingGET(id, roomId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -560,11 +560,11 @@ export const MessageControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateMessageUsingPUT(id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageDto>> {
+        async updateMessageUsingPUT(id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateMessageUsingPUT(id, roomId, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -589,11 +589,11 @@ export const MessageControllerApiFactory = function (configuration?: Configurati
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMessageUsingPOST(roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<IdDto> {
+        createMessageUsingPOST(roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<IdDto> {
             return localVarFp.createMessageUsingPOST(roomId, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -607,11 +607,11 @@ export const MessageControllerApiFactory = function (configuration?: Configurati
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteMessageUsingDELETE(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        deleteMessageUsingDELETE(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.deleteMessageUsingDELETE(id, roomId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -631,11 +631,11 @@ export const MessageControllerApiFactory = function (configuration?: Configurati
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllMessagesUsingGET(roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<PageMessageDto> {
+        getAllMessagesUsingGET(roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<PageMessageDto> {
             return localVarFp.getAllMessagesUsingGET(roomId, offset, paged, pageNumber, pageSize, sortSorted, sortUnsorted, unpaged, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -649,11 +649,11 @@ export const MessageControllerApiFactory = function (configuration?: Configurati
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMessageByIdUsingGET(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<MessageDto> {
+        getMessageByIdUsingGET(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<MessageDto> {
             return localVarFp.getMessageByIdUsingGET(id, roomId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -668,11 +668,11 @@ export const MessageControllerApiFactory = function (configuration?: Configurati
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMessageUsingPUT(id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<MessageDto> {
+        updateMessageUsingPUT(id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<MessageDto> {
             return localVarFp.updateMessageUsingPUT(id, roomId, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
     };
@@ -696,12 +696,12 @@ export class MessageControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessageControllerApi
      */
-    public createMessageUsingPOST(roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public createMessageUsingPOST(roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return MessageControllerApiFp(this.configuration).createMessageUsingPOST(roomId, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -716,12 +716,12 @@ export class MessageControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessageControllerApi
      */
-    public deleteMessageUsingDELETE(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public deleteMessageUsingDELETE(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return MessageControllerApiFp(this.configuration).deleteMessageUsingDELETE(id, roomId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -742,12 +742,12 @@ export class MessageControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessageControllerApi
      */
-    public getAllMessagesUsingGET(roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public getAllMessagesUsingGET(roomId: string, offset?: number, paged?: boolean, pageNumber?: number, pageSize?: number, sortSorted?: boolean, sortUnsorted?: boolean, unpaged?: boolean, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return MessageControllerApiFp(this.configuration).getAllMessagesUsingGET(roomId, offset, paged, pageNumber, pageSize, sortSorted, sortUnsorted, unpaged, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -762,12 +762,12 @@ export class MessageControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessageControllerApi
      */
-    public getMessageByIdUsingGET(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public getMessageByIdUsingGET(id: string, roomId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return MessageControllerApiFp(this.configuration).getMessageByIdUsingGET(id, roomId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -783,12 +783,12 @@ export class MessageControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessageControllerApi
      */
-    public updateMessageUsingPUT(id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public updateMessageUsingPUT(id: string, roomId: string, dto: MessageDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return MessageControllerApiFp(this.configuration).updateMessageUsingPUT(id, roomId, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 }

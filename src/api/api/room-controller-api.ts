@@ -43,11 +43,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMembersUsingPOST: async (id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        addMembersUsingPOST: async (id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('addMembersUsingPOST', 'id', id)
             // verify required parameter 'memberId' is not null or undefined
@@ -122,11 +122,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addModeratorUsingPOST: async (id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        addModeratorUsingPOST: async (id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('addModeratorUsingPOST', 'id', id)
             // verify required parameter 'moderatorId' is not null or undefined
@@ -200,11 +200,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoomUsingPOST: async (dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        createRoomUsingPOST: async (dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'dto' is not null or undefined
             assertParamExists('createRoomUsingPOST', 'dto', dto)
             const localVarPath = `/api/rooms`;
@@ -276,11 +276,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteMembersUsingDELETE: async (id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        deleteMembersUsingDELETE: async (id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteMembersUsingDELETE', 'id', id)
             // verify required parameter 'memberId' is not null or undefined
@@ -353,11 +353,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteModeratorUsingDELETE: async (id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        deleteModeratorUsingDELETE: async (id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteModeratorUsingDELETE', 'id', id)
             // verify required parameter 'moderatorId' is not null or undefined
@@ -429,11 +429,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRoomUsingDELETE: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        deleteRoomUsingDELETE: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteRoomUsingDELETE', 'id', id)
             const localVarPath = `/api/rooms/{id}`
@@ -501,11 +501,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllRoomsByUserUsingGET: async (userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        getAllRoomsByUserUsingGET: async (userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/rooms/own`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -570,11 +570,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllRoomsUsingGET: async (userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        getAllRoomsUsingGET: async (userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/rooms`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -640,11 +640,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRoomByIdUsingGET: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        getRoomByIdUsingGET: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getRoomByIdUsingGET', 'id', id)
             const localVarPath = `/api/rooms/{id}`
@@ -714,11 +714,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchRoomUsingPATCH: async (id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        patchRoomUsingPATCH: async (id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('patchRoomUsingPATCH', 'id', id)
             // verify required parameter 'dto' is not null or undefined
@@ -793,11 +793,11 @@ export const RoomControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRoomUsingPUT: async (id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        updateRoomUsingPUT: async (id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateRoomUsingPUT', 'id', id)
             // verify required parameter 'dto' is not null or undefined
@@ -882,11 +882,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addMembersUsingPOST(id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async addMembersUsingPOST(id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addMembersUsingPOST(id, memberId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -901,11 +901,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addModeratorUsingPOST(id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async addModeratorUsingPOST(id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addModeratorUsingPOST(id, moderatorId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -919,11 +919,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRoomUsingPOST(dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IdDto>> {
+        async createRoomUsingPOST(dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IdDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRoomUsingPOST(dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -938,11 +938,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteMembersUsingDELETE(id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteMembersUsingDELETE(id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMembersUsingDELETE(id, memberId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -957,11 +957,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteModeratorUsingDELETE(id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteModeratorUsingDELETE(id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteModeratorUsingDELETE(id, moderatorId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -975,11 +975,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRoomUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteRoomUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRoomUsingDELETE(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -992,11 +992,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllRoomsByUserUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RoomDto>>> {
+        async getAllRoomsByUserUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RoomDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllRoomsByUserUsingGET(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1009,11 +1009,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllRoomsUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RoomDto>>> {
+        async getAllRoomsUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RoomDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllRoomsUsingGET(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1027,11 +1027,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRoomByIdUsingGET(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoomDto>> {
+        async getRoomByIdUsingGET(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoomDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRoomByIdUsingGET(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1046,11 +1046,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchRoomUsingPATCH(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoomDto>> {
+        async patchRoomUsingPATCH(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoomDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.patchRoomUsingPATCH(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1065,11 +1065,11 @@ export const RoomControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRoomUsingPUT(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoomDto>> {
+        async updateRoomUsingPUT(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoomDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateRoomUsingPUT(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1094,11 +1094,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMembersUsingPOST(id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        addMembersUsingPOST(id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.addMembersUsingPOST(id, memberId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1112,11 +1112,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addModeratorUsingPOST(id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        addModeratorUsingPOST(id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.addModeratorUsingPOST(id, moderatorId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1129,11 +1129,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoomUsingPOST(dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<IdDto> {
+        createRoomUsingPOST(dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<IdDto> {
             return localVarFp.createRoomUsingPOST(dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1147,11 +1147,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteMembersUsingDELETE(id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        deleteMembersUsingDELETE(id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.deleteMembersUsingDELETE(id, memberId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1165,11 +1165,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteModeratorUsingDELETE(id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        deleteModeratorUsingDELETE(id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.deleteModeratorUsingDELETE(id, moderatorId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1182,11 +1182,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRoomUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        deleteRoomUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.deleteRoomUsingDELETE(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1198,11 +1198,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllRoomsByUserUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<Array<RoomDto>> {
+        getAllRoomsByUserUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<Array<RoomDto>> {
             return localVarFp.getAllRoomsByUserUsingGET(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1214,11 +1214,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllRoomsUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<Array<RoomDto>> {
+        getAllRoomsUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<Array<RoomDto>> {
             return localVarFp.getAllRoomsUsingGET(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1231,11 +1231,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRoomByIdUsingGET(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<RoomDto> {
+        getRoomByIdUsingGET(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<RoomDto> {
             return localVarFp.getRoomByIdUsingGET(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1249,11 +1249,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchRoomUsingPATCH(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<RoomDto> {
+        patchRoomUsingPATCH(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<RoomDto> {
             return localVarFp.patchRoomUsingPATCH(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1267,11 +1267,11 @@ export const RoomControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRoomUsingPUT(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<RoomDto> {
+        updateRoomUsingPUT(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<RoomDto> {
             return localVarFp.updateRoomUsingPUT(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
     };
@@ -1295,12 +1295,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public addMembersUsingPOST(id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public addMembersUsingPOST(id: string, memberId: WrapperDtoArrayuuid, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).addMembersUsingPOST(id, memberId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1315,12 +1315,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public addModeratorUsingPOST(id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public addModeratorUsingPOST(id: string, moderatorId: IdDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).addModeratorUsingPOST(id, moderatorId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1334,12 +1334,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public createRoomUsingPOST(dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public createRoomUsingPOST(dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).createRoomUsingPOST(dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1354,12 +1354,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public deleteMembersUsingDELETE(id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public deleteMembersUsingDELETE(id: string, memberId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).deleteMembersUsingDELETE(id, memberId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1374,12 +1374,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public deleteModeratorUsingDELETE(id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public deleteModeratorUsingDELETE(id: string, moderatorId: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).deleteModeratorUsingDELETE(id, moderatorId, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1393,12 +1393,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public deleteRoomUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public deleteRoomUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).deleteRoomUsingDELETE(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1411,12 +1411,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public getAllRoomsByUserUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public getAllRoomsByUserUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).getAllRoomsByUserUsingGET(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1429,12 +1429,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public getAllRoomsUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public getAllRoomsUsingGET(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).getAllRoomsUsingGET(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1448,12 +1448,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public getRoomByIdUsingGET(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public getRoomByIdUsingGET(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).getRoomByIdUsingGET(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1468,12 +1468,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public patchRoomUsingPATCH(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public patchRoomUsingPATCH(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).patchRoomUsingPATCH(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1488,12 +1488,12 @@ export class RoomControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoomControllerApi
      */
-    public updateRoomUsingPUT(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public updateRoomUsingPUT(id: string, dto: RoomDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return RoomControllerApiFp(this.configuration).updateRoomUsingPUT(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 }

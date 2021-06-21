@@ -8,7 +8,7 @@
         <div class="container" v-for="message in messages" :key="message.id">
             <p style="text-align: end">{{parseDateFromUtc(message.created)}}</p>
             <p style="text-align: end">Пользователь: {{message.userId}}</p>
-<!--            <p>{{message.updated}}</p>-->
+            <!--            <p>{{message.updated}}</p>-->
             <p style="margin: 20px; font-size: 20px">{{message.text}}</p>
         </div>
     </div>
@@ -22,8 +22,10 @@
     import {reactive, ref, watch} from "vue";
     import {useStore} from "vuex";
     import {parseDateFromUtc} from "@/components/common";
+    import moment from "moment";
+    import { defineComponent } from "vue";
 
-    export default {
+    export default defineComponent({
         name: "MessageList",
         setup() {
             const API: MessageControllerApi = new MessageControllerApi(
@@ -44,7 +46,8 @@
             watch(
                 () => store.getters.getMessageMap,
                 (state) => {
-                    loadData()
+                    loadDataOrGetFromCache(state);
+
                     console.log("''''''''" + roomId)
                     console.log(state)
                     console.log(state.get(roomId))
@@ -81,7 +84,10 @@
             let loadData = () => {
                 API.getAllMessagesUsingGET(roomId)
                     .then((response) => {
-                        messages.value = response.data.content;
+                        if(response.data.content && response.data.content.length > 0) {
+                            // response.data.content.reverse();
+                            messages.value = response.data.content;
+                        }
                     })
                     .catch(error => {
                         console.error("messages get error : " + error);
@@ -90,6 +96,17 @@
                         // alert("loading finished!");
                     });
             };
+
+            let loadDataOrGetFromCache = (state: any) => {
+                loadData();
+
+                if (!messages.value || messages.value.length === 0) {
+                    let messageArr: MessageDto[] = state.get(roomId);
+                    if(messageArr) {
+                        messages.value = messageArr;
+                    }
+                }
+            }
 
             let stompClient = store.getters.getStompClient
 
@@ -100,12 +117,13 @@
                     mess.roomId = roomId;
                     mess.userId = "00000000-0000-0000-0000-000000000000";
                     mess.text = messageText.value;
+                    mess.created = moment.now().toString();
                     console.log(JSON.stringify(mess));
                     stompClient.send("/app/room/" + roomId, JSON.stringify(mess), {'token': localStorage.getItem('token')});
                 }
             }
 
-            loadData();
+            loadDataOrGetFromCache(store.getters.getMessageMap);
 
 
             return {
@@ -117,7 +135,7 @@
             }
 
         }
-    }
+    })
 </script>
 
 <style scoped>

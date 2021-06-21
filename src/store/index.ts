@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 import credentials from "@/store/credentials";
 import ws from "@/store/ws";
 import messages from "@/store/message-holder";
+import usr from "@/store/usr";
 
 // @ts-ignore
 export default createStore({
@@ -17,6 +18,7 @@ export default createStore({
       credentials,
       ws,
       // @ts-ignore
-      messages
+      messages,
+      usr
     }
 })

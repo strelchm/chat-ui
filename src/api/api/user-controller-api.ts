@@ -40,11 +40,11 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockUserUsingPOST: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        blockUserUsingPOST: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('blockUserUsingPOST', 'id', id)
             const localVarPath = `/api/users/{id}/block`
@@ -149,11 +149,11 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUserUsingDELETE: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        deleteUserUsingDELETE: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteUserUsingDELETE', 'id', id)
             const localVarPath = `/api/users/{id}`
@@ -244,6 +244,75 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * 
+         * @summary getSelf
+         * @param {string} [userCreated] 
+         * @param {string} [userId] 
+         * @param {string} [userLogin] 
+         * @param {string} [userPassword] 
+         * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
+         * @param {string} [userUpdated] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSelfUsingPOST: async (userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/users/self`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (userCreated !== undefined) {
+                localVarQueryParameter['user.created'] = (userCreated as any instanceof Date) ?
+                    (userCreated as any).toISOString() :
+                    userCreated;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['user.id'] = userId;
+            }
+
+            if (userLogin !== undefined) {
+                localVarQueryParameter['user.login'] = userLogin;
+            }
+
+            if (userPassword !== undefined) {
+                localVarQueryParameter['user.password'] = userPassword;
+            }
+
+            if (userStatus !== undefined) {
+                localVarQueryParameter['user.status'] = userStatus;
+            }
+
+            if (userUpdated !== undefined) {
+                localVarQueryParameter['user.updated'] = (userUpdated as any instanceof Date) ?
+                    (userUpdated as any).toISOString() :
+                    userUpdated;
+            }
+
+            if (userUserAppRole !== undefined) {
+                localVarQueryParameter['user.userAppRole'] = userUserAppRole;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary getUserById
          * @param {string} id id
          * @param {*} [options] Override http request option.
@@ -287,11 +356,11 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchUserUsingPATCH: async (id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        patchUserUsingPATCH: async (id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('patchUserUsingPATCH', 'id', id)
             // verify required parameter 'dto' is not null or undefined
@@ -365,11 +434,11 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unblockUserUsingPOST: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
+        unblockUserUsingPOST: async (id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('unblockUserUsingPOST', 'id', id)
             const localVarPath = `/api/users/{id}/unblock`
@@ -448,11 +517,11 @@ export const UserControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async blockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async blockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.blockUserUsingPOST(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -477,11 +546,11 @@ export const UserControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteUserUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteUserUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteUserUsingDELETE(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -493,6 +562,23 @@ export const UserControllerApiFp = function(configuration?: Configuration) {
          */
         async getAllUsersUsingGET(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UserDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllUsersUsingGET(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary getSelf
+         * @param {string} [userCreated] 
+         * @param {string} [userId] 
+         * @param {string} [userLogin] 
+         * @param {string} [userPassword] 
+         * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
+         * @param {string} [userUpdated] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSelfUsingPOST(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSelfUsingPOST(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -517,11 +603,11 @@ export const UserControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchUserUsingPATCH(id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDto>> {
+        async patchUserUsingPATCH(id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.patchUserUsingPATCH(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -535,11 +621,11 @@ export const UserControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unblockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async unblockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unblockUserUsingPOST(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -563,11 +649,11 @@ export const UserControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        blockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        blockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.blockUserUsingPOST(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -590,11 +676,11 @@ export const UserControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUserUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        deleteUserUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.deleteUserUsingDELETE(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -605,6 +691,22 @@ export const UserControllerApiFactory = function (configuration?: Configuration,
          */
         getAllUsersUsingGET(options?: any): AxiosPromise<Array<UserDto>> {
             return localVarFp.getAllUsersUsingGET(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary getSelf
+         * @param {string} [userCreated] 
+         * @param {string} [userId] 
+         * @param {string} [userLogin] 
+         * @param {string} [userPassword] 
+         * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
+         * @param {string} [userUpdated] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSelfUsingPOST(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<UserDto> {
+            return localVarFp.getSelfUsingPOST(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -627,11 +729,11 @@ export const UserControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchUserUsingPATCH(id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<UserDto> {
+        patchUserUsingPATCH(id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<UserDto> {
             return localVarFp.patchUserUsingPATCH(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
         /**
@@ -644,11 +746,11 @@ export const UserControllerApiFactory = function (configuration?: Configuration,
          * @param {string} [userPassword] 
          * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
          * @param {string} [userUpdated] 
-         * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+         * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unblockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any): AxiosPromise<void> {
+        unblockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any): AxiosPromise<void> {
             return localVarFp.unblockUserUsingPOST(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(axios, basePath));
         },
     };
@@ -671,12 +773,12 @@ export class UserControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserControllerApi
      */
-    public blockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public blockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return UserControllerApiFp(this.configuration).blockUserUsingPOST(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -702,12 +804,12 @@ export class UserControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserControllerApi
      */
-    public deleteUserUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public deleteUserUsingDELETE(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return UserControllerApiFp(this.configuration).deleteUserUsingDELETE(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -720,6 +822,24 @@ export class UserControllerApi extends BaseAPI {
      */
     public getAllUsersUsingGET(options?: any) {
         return UserControllerApiFp(this.configuration).getAllUsersUsingGET(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary getSelf
+     * @param {string} [userCreated] 
+     * @param {string} [userId] 
+     * @param {string} [userLogin] 
+     * @param {string} [userPassword] 
+     * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
+     * @param {string} [userUpdated] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserControllerApi
+     */
+    public getSelfUsingPOST(userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
+        return UserControllerApiFp(this.configuration).getSelfUsingPOST(userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -745,12 +865,12 @@ export class UserControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserControllerApi
      */
-    public patchUserUsingPATCH(id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public patchUserUsingPATCH(id: string, dto: UserDto, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return UserControllerApiFp(this.configuration).patchUserUsingPATCH(id, dto, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -764,12 +884,12 @@ export class UserControllerApi extends BaseAPI {
      * @param {string} [userPassword] 
      * @param {'ACTIVE' | 'GLOBAL_BLOCKED'} [userStatus] 
      * @param {string} [userUpdated] 
-     * @param {'ADMIN' | 'CLIENT'} [userUserAppRole] 
+     * @param {'ADMIN' | 'BOT' | 'CLIENT'} [userUserAppRole] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserControllerApi
      */
-    public unblockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'CLIENT', options?: any) {
+    public unblockUserUsingPOST(id: string, userCreated?: string, userId?: string, userLogin?: string, userPassword?: string, userStatus?: 'ACTIVE' | 'GLOBAL_BLOCKED', userUpdated?: string, userUserAppRole?: 'ADMIN' | 'BOT' | 'CLIENT', options?: any) {
         return UserControllerApiFp(this.configuration).unblockUserUsingPOST(id, userCreated, userId, userLogin, userPassword, userStatus, userUpdated, userUserAppRole, options).then((request) => request(this.axios, this.basePath));
     }
 }
