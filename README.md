@@ -2,25 +2,20 @@
 Ui for chat project
 
 
-## Project setup
+
+Для запуска проекта нужно установить NodeJS. Далее - выполнить из консоли команды 1,2
+
+## 0. Установка зависимостей
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 1. Режим отладки (с горячей перезагрузкой). 
 ```
-npm run serve
+npm run serve -- --port 8001
 ```
 
-### Compiles and minifies for production
+### Продакшен - компиляция с минимизацией для деплоя на веб-сервер
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
