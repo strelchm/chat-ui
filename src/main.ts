@@ -1,12 +1,24 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import axios from 'axios';
 import vuetify from './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import {FORBIDDEN_RESPONSE_CODE, UNAUTHORIZED_RESPONSE_CODE} from "@/http-response-code";
+import PrimeVue from 'primevue/config';
+import Button from 'primevue/button';
+import InputText from "primevue/inputtext";
+import Card from 'primevue/card';
+import Tag from 'primevue/tag';
+import Fieldset from 'primevue/fieldset';
+import Menubar from 'primevue/menubar';
+import Divider from 'primevue/divider';
+import Textarea from 'primevue/textarea';
+import 'primevue/resources/primevue.min.css'
+import 'primevue/resources/themes/bootstrap4-light-blue/theme.css'
+import 'primeicons/primeicons.css'
 
-const BASE_URL:string = "http://localhost:8080";
+const BASE_URL: string = "http://localhost:8080";
 axios.defaults.baseURL = BASE_URL;
 
 const sendApiResponseError = (error: any) => {
@@ -44,7 +56,7 @@ axios.interceptors.response.use(
                 store.dispatch("logOut");
                 console.warn("axios.interceptors.response: logout with 401 / 403 code cause");
             } else if (error.response.status >= 300) {
-                if(!store.getters.isLogged) {
+                if (!store.getters.isLogged) {
                     router.push("login").catch(reason => console.warn("axios.interceptors.response: " + reason));
                 }
                 sendApiResponseError(error.response.data.message);
@@ -72,15 +84,29 @@ router.beforeEach((to, from, next) => {
     }
 );
 
-if(localStorage.getItem("token")) {
+if (localStorage.getItem("token")) {
     store.dispatch("updateCredentials");
 }
 
 
 store.dispatch("wsConnect");
 
-createApp(App)
-  .use(router)
-  .use(store)
-  .use(vuetify)
-  .mount('#app')
+const app = createApp(App)
+
+app.use(router)
+    .use(store)
+    .use(PrimeVue)
+    .use(vuetify)
+
+app.component('Button', Button);
+app.component("InputText", InputText);
+app.component("Card", Card);
+app.component("Tag", Tag);
+app.component("Fieldset", Fieldset);
+app.component("Textarea", Textarea);
+app.component("Divider", Divider);
+app.component("Menubar", Menubar);
+
+app.mount('#app')
+
+

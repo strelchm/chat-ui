@@ -1,16 +1,23 @@
 <template>
     <div>
-        <v-container style="display: flex; flex-direction: row; justify-items: center; align-items: center;">
-            <textarea v-model="messageText" style="border: 1px #2c3e50 !important; "/>
-            <v-btn @click="addMessage">+ Добавить сообщение</v-btn>
-        </v-container>
-        <v-divider></v-divider>
-        <div class="container" v-for="message in messages" :key="message.id">
-            <p style="text-align: end">{{parseDateFromUtc(message.created)}}</p>
-            <p style="text-align: end">Пользователь: {{message.userId}}</p>
-            <!--            <p>{{message.updated}}</p>-->
-            <p style="margin: 20px; font-size: 20px">{{message.text}}</p>
-        </div>
+        <Fieldset :toggleable="true" :collapsed="true">
+            <template #legend>Добавить сообщение</template>
+            <div style="display: flex; flex-direction: column;">
+                <Textarea style="width: 100%" v-model="messageText" :autoResize="true"/>
+                <Button style="margin-top: 10px; max-width: 150px; align-self: center !important;" icon="pi pi-check"
+                        @click="addMessage" label="Добавить"/>
+            </div>
+        </Fieldset>
+        <!--        <v-container style="display: flex; flex-direction: row; justify-items: center; align-items: center;">-->
+        <!--        </v-container>-->
+        <Divider type="dashed"/>
+        <Card class="container" v-for="message in messages" :key="message.id">
+            <template #header style="text-align: end">Пользователь: {{message.userId}}</template>
+            <template #subtitle style="text-align: end; margin: 0px">{{parseDateFromUtc(message.created)}}</template>
+            <template #content>
+                <p style="margin: 5px; font-size: 30px">{{message.text}}</p>
+            </template>
+        </Card>
     </div>
 </template>
 
@@ -23,7 +30,7 @@
     import {useStore} from "vuex";
     import {parseDateFromUtc} from "@/components/common";
     import moment from "moment";
-    import { defineComponent } from "vue";
+    import {defineComponent} from "vue";
 
     export default defineComponent({
         name: "MessageList",
@@ -84,7 +91,7 @@
             let loadData = () => {
                 API.getAllMessagesUsingGET(roomId)
                     .then((response) => {
-                        if(response.data.content && response.data.content.length > 0) {
+                        if (response.data.content && response.data.content.length > 0) {
                             // response.data.content.reverse();
                             messages.value = response.data.content;
                         }
@@ -102,7 +109,7 @@
 
                 if (!messages.value || messages.value.length === 0) {
                     let messageArr: MessageDto[] = state.get(roomId);
-                    if(messageArr) {
+                    if (messageArr) {
                         messages.value = messageArr;
                     }
                 }
@@ -144,7 +151,7 @@
         border: 2px solid #dedede;
         background-color: #f1f1f1;
         border-radius: 5px;
-        padding: 10px;
+        padding: 0px;
         margin: 10px 0;
     }
 

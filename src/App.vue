@@ -1,17 +1,35 @@
 <template>
     <v-app>
-        <v-app-bar v-if="isLogOutButVisible" app>
-            <v-row align-content="center" justify="center">
-                <v-col id="nav">
-                    <router-link to="/" class="router-link">Чаты</router-link>
-                    <router-link to="/users" class="router-link">Пользователи</router-link>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col>
-                    <v-btn @click="logout" color="primary">logout</v-btn>
-                </v-col>
-            </v-row>
-        </v-app-bar>
+        <Menubar :model="navBarItems">
+            <template #start>
+                Чат
+            </template>
+<!--            <template #item="{item}">-->
+<!--                <a :href="item.url">{{item.name}}</a>-->
+<!--&lt;!&ndash;                <router-link to="item.url" class="router-link">{{item.name}}</router-link>&ndash;&gt;-->
+<!--            </template>-->
+            <template #end>
+                <Button v-if="isLogOutButVisible" icon="pi pi-sign-out" @click="logout" class="p-button-secondary" label="Выход"/>
+            </template>
+        </Menubar>
+        <!--            <template #start>-->
+        <!--                <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="p-mr-2">-->
+        <!--            </template>-->
+        <!--            <template #end>-->
+        <!--                <InputText placeholder="Search" type="text" />-->
+        <!--            </template>-->
+
+        <!--        <v-app-bar v-if="isLogOutButVisible" app>-->
+        <!--            <v-row align-content="center" justify="center">-->
+        <!--                <v-col id="nav">-->
+
+        <!--                </v-col>-->
+        <!--                <v-spacer></v-spacer>-->
+        <!--                <v-col>-->
+        <!--                    <v-btn @click="logout" color="primary">logout</v-btn>-->
+        <!--                </v-col>-->
+        <!--            </v-row>-->
+        <!--        </v-app-bar>-->
         <v-main>
             <v-container fluid>
                 <router-view/>
@@ -24,12 +42,27 @@
     import {computed, defineComponent} from 'vue'
     import {useStore} from "vuex";
     import {useRouter} from "vue-router";
+    import {ref} from 'vue';
 
     export default defineComponent({
         name: 'App',
         setup() {
             const store = useStore();
             const router = useRouter();
+
+            const navBarItems = ref([
+                {
+                    label: 'Чаты',
+                    icon: 'pi  pi-users',
+                    url: "/"
+                },
+                {
+                    label: 'Пользователи',
+                    icon: 'pi pi-user',
+                    url: "/users"
+                },
+
+            ]);
 
             let isLogOutButVisible = computed(() => store.getters.isLogged);
 
@@ -64,12 +97,18 @@
 
             return {
                 logout,
-                isLogOutButVisible
+                isLogOutButVisible,
+                navBarItems
             }
         }
     })
 </script>
 <style>
+    html, body {
+        background: #aaaaaa !important;
+        font-family: Abel, Arial, Verdana, sans-serif;
+    }
+
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -79,7 +118,7 @@
     }
 
     .router-link {
-      margin-left: 10px;
+        margin-left: 10px;
     }
 
     #nav {

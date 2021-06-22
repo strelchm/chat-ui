@@ -1,15 +1,16 @@
 import {RoomDtoTypeEnum} from "@/api";
 <template>
     <div class="cards">
-        <div class="card" v-for="room in rooms" :key="room.id">
-            <div class="card-title">
-                <div class="card-status">Создана: {{parseDateFromUtc(room.created)}}</div>
-            </div>
-            <p :class="'card-status ' + getChipStyleByType(room.type)" class="card-chip">{{room.type}}</p>
-            <div style="font-size: 40px">{{room.name}}</div>
-            <v-spacer></v-spacer>
-            <v-btn @click="goToMessagePage(room.id)">Сообщения</v-btn>
-        </div>
+        <Card class="card" v-for="room in rooms" :key="room.id">
+            <template #title>{{room.name}}</template>
+            <template #subtitle>Создана: {{parseDateFromUtc(room.created)}}</template>
+            <template #content>
+                <Tag :class="'card-status ' + getChipStyleByType(room.type)">{{room.type}}</Tag>
+            </template>
+            <template #footer>
+                <Button icon="pi pi-check" @click="goToMessagePage(room.id)" label="Сообщения"/>
+            </template>
+        </Card>
     </div>
 </template>
 
@@ -93,11 +94,6 @@ import {RoomDtoTypeEnum} from "@/api";
 <style scoped>
     @import url('https://fonts.googleapis.com/css?family=Abel');
 
-    html, body {
-        background: #FCEEB5;
-        font-family: Abel, Arial, Verdana, sans-serif;
-    }
-
     .center {
         position: absolute;
         top: 50%;
@@ -125,20 +121,6 @@ import {RoomDtoTypeEnum} from "@/api";
         flex-direction: column;
     }
 
-    .card-status {
-        align-self: flex-end;
-        justify-self: flex-end;
-        font-size: .8em;
-    }
-
-    .card-title {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-items: flex-start;
-        align-items: flex-start;
-    }
-
     .card-chip {
         display: inline-block;
         padding: 0 25px;
@@ -151,15 +133,10 @@ import {RoomDtoTypeEnum} from "@/api";
     }
 
     .private-card-chip {
-        background-color: darksalmon;
+        background-color: #42b983;
     }
 
     .public-card-chip {
-        background-color: aquamarine;
-    }
-
-    v-btn {
-        justify-self: flex-end;
-        align-self: flex-end;
+        background-color: #f44336;
     }
 </style>
