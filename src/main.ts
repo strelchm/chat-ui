@@ -14,6 +14,8 @@ import Fieldset from 'primevue/fieldset';
 import Menubar from 'primevue/menubar';
 import Divider from 'primevue/divider';
 import Textarea from 'primevue/textarea';
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
 import 'primevue/resources/primevue.min.css'
 import 'primevue/resources/themes/bootstrap4-light-blue/theme.css'
 import 'primeicons/primeicons.css'
@@ -21,22 +23,12 @@ import 'primeicons/primeicons.css'
 const BASE_URL: string = "http://localhost:8080";
 axios.defaults.baseURL = BASE_URL;
 
-const sendApiResponseError = (error: any) => {
-    console.error(error);
-}
-
-const sendApiRequestError = (error: any) => {
-    console.error(error);
-}
-
 axios.interceptors.request.use(
     (requestConfig) => {
-        console.log("try")
         const token: string | null = localStorage.getItem('token');
         if (requestConfig.baseURL && BASE_URL.localeCompare(requestConfig.baseURL) === 0 && token) {
             requestConfig.headers['Authorization'] = 'Bearer ' + token;
         }
-        console.log("yess")
         return requestConfig;
     },
     (error) => {
@@ -72,7 +64,6 @@ axios.interceptors.response.use(
 );
 
 router.beforeEach((to, from, next) => {
-        console.log("--->")
         const token: string | null = localStorage.getItem("token");
         const isLoginPage: boolean = to.path.localeCompare('/login') === 0;
         // store.dispatch('setCurrentPageInfo', new CurrentPagePayload(to.meta.title, to.meta.prev));
@@ -97,6 +88,7 @@ app.use(router)
     .use(store)
     .use(PrimeVue)
     .use(vuetify)
+    .use(ToastService)
 
 app.component('Button', Button);
 app.component("InputText", InputText);
@@ -106,7 +98,18 @@ app.component("Fieldset", Fieldset);
 app.component("Textarea", Textarea);
 app.component("Divider", Divider);
 app.component("Menubar", Menubar);
+app.component("Toast", Toast);
 
 app.mount('#app')
+
+// const toast = useToast();
+
+const sendApiResponseError = (error: any) => {
+    // toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
+}
+
+const sendApiRequestError = (error: any) => {
+    // toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
+}
 
 

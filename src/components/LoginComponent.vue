@@ -1,13 +1,13 @@
 <template>
     <div class="container" style="display: flex; flex-direction: column; justify-items: center; align-items: center; height:100%">
         <div style="align-self: center; justify-self:center;">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" v-model="input.login" required>
+            <label id="uname"><b>Логин</b></label>
+            <InputText type="text" placeholder="Введите логин" name="uname" v-model="input.login" />
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" v-model="input.password" required>
+            <label id="psw"><b>Пароль</b></label>
+            <InputText type="password" placeholder="Введите пароль" name="psw" v-model="input.password" />
 
-            <v-btn type="submit" v-on:click="login" style="align-self: center !important; justify-self:center !important;">Login</v-btn>
+            <Button type="submit" v-on:click="login" style="align-self: center !important; justify-self:center !important;">Войти</Button>
         </div>
     </div>
 </template>
@@ -17,6 +17,7 @@
     import {LoginRequestDto} from "@/api";
     import {reactive} from "vue";
     import {useRouter} from "vue-router";
+    import {useToast} from "primevue/usetoast";
 
     class LoginDtoImpl implements LoginRequestDto {
     }
@@ -26,6 +27,7 @@
         setup() {
             const store = useStore();
             const router = useRouter();
+            const toast = useToast();
             let input: LoginRequestDto = reactive(new LoginDtoImpl());
             let login = () => {
                 store.dispatch("logIn", input)
@@ -34,9 +36,11 @@
                         // ctx.root.$router.go(-1); // редирект на предыдущую страницу
                     })
                     .catch((err: any) => {
+                        toast.add({severity: 'error', summary: 'Ошибка', detail: err, life: 3000});
                         console.error("error during login action: " + err);
                     })
                     .finally(() => {
+                        toast.add({severity: 'success', summary: 'Приветствие', detail: "Добро пожаловать, " + input.login, life: 3000});
                     });
             }
             return {

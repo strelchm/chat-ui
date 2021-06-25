@@ -31,6 +31,7 @@
     import {parseDateFromUtc} from "@/components/common";
     import moment from "moment";
     import {defineComponent} from "vue";
+    import {useToast} from "primevue/usetoast";
 
     export default defineComponent({
         name: "MessageList",
@@ -43,6 +44,7 @@
 
             const route = useRoute();
             const store = useStore();
+            const toast = useToast();
 
             const roomId: any = route.params.roomId;
 
@@ -97,6 +99,7 @@
                         }
                     })
                     .catch(error => {
+                        toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
                         console.error("messages get error : " + error);
                     })
                     .finally(() => {
@@ -113,19 +116,18 @@
                         messages.value = messageArr;
                     }
                 }
-            }
+            };
 
             let stompClient = store.getters.getStompClient
 
             let addMessage = () => {
-                console.log("Send message:" + messageText.value);
+                toast.add({severity: 'error', summary: '1111', detail: "1111", life: 3000});
                 if (stompClient && stompClient.connected) {
                     let mess: any = {};
                     mess.roomId = roomId;
                     mess.userId = "00000000-0000-0000-0000-000000000000";
                     mess.text = messageText.value;
                     mess.created = moment.now().toString();
-                    console.log(JSON.stringify(mess));
                     stompClient.send("/app/room/" + roomId, JSON.stringify(mess), {'token': localStorage.getItem('token')});
                 }
             }

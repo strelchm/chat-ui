@@ -1,41 +1,15 @@
 <template>
-    <v-app>
+    <div>
         <Menubar :model="navBarItems">
-            <template #start>
-                Чат
-            </template>
-<!--            <template #item="{item}">-->
-<!--                <a :href="item.url">{{item.name}}</a>-->
-<!--&lt;!&ndash;                <router-link to="item.url" class="router-link">{{item.name}}</router-link>&ndash;&gt;-->
-<!--            </template>-->
+            <template #start>Чат</template>
+
             <template #end>
                 <Button v-if="isLogOutButVisible" icon="pi pi-sign-out" @click="logout" class="p-button-secondary" label="Выход"/>
             </template>
         </Menubar>
-        <!--            <template #start>-->
-        <!--                <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="p-mr-2">-->
-        <!--            </template>-->
-        <!--            <template #end>-->
-        <!--                <InputText placeholder="Search" type="text" />-->
-        <!--            </template>-->
 
-        <!--        <v-app-bar v-if="isLogOutButVisible" app>-->
-        <!--            <v-row align-content="center" justify="center">-->
-        <!--                <v-col id="nav">-->
-
-        <!--                </v-col>-->
-        <!--                <v-spacer></v-spacer>-->
-        <!--                <v-col>-->
-        <!--                    <v-btn @click="logout" color="primary">logout</v-btn>-->
-        <!--                </v-col>-->
-        <!--            </v-row>-->
-        <!--        </v-app-bar>-->
-        <v-main>
-            <v-container fluid>
-                <router-view/>
-            </v-container>
-        </v-main>
-    </v-app>
+        <router-view/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -43,6 +17,8 @@
     import {useStore} from "vuex";
     import {useRouter} from "vue-router";
     import {ref} from 'vue';
+    import {useToast} from "primevue/usetoast";
+    import { onMounted } from 'vue';
 
     export default defineComponent({
         name: 'App',
@@ -94,6 +70,17 @@
             // };
             //
             // loadData();
+            onMounted(() => {
+                console.log('mounted')
+                const toast = useToast()
+                console.log(`toast: `, toast)
+                toast.add({
+                    severity: 'info',
+                    summary: 'info summary',
+                    detail: 'info detail',
+                    life: 3000
+                })
+            })
 
             return {
                 logout,
@@ -104,6 +91,11 @@
     })
 </script>
 <style>
+    @import "~primevue/resources/primevue.css";
+    @import "~primevue/resources/themes/nova-alt/theme.css";
+    @import "~primeicons/primeicons.css";
+    /*@import "~primeflex/primeflex.css";*/
+
     html, body {
         background: #aaaaaa !important;
         font-family: Abel, Arial, Verdana, sans-serif;
