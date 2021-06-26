@@ -13,12 +13,10 @@
 </template>
 
 <script lang="ts">
-    import {computed, defineComponent} from 'vue'
+    import {computed, defineComponent, ref} from 'vue'
     import {useStore} from "vuex";
     import {useRouter} from "vue-router";
-    import {ref} from 'vue';
-    import {useToast} from "primevue/usetoast";
-    import { onMounted } from 'vue';
+    import 'mosha-vue-toastify/dist/style.css';
 
     export default defineComponent({
         name: 'App',
@@ -70,17 +68,6 @@
             // };
             //
             // loadData();
-            onMounted(() => {
-                console.log('mounted')
-                const toast = useToast()
-                console.log(`toast: `, toast)
-                toast.add({
-                    severity: 'info',
-                    summary: 'info summary',
-                    detail: 'info detail',
-                    life: 3000
-                })
-            })
 
             return {
                 logout,

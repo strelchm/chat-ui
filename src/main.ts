@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import {FORBIDDEN_RESPONSE_CODE, UNAUTHORIZED_RESPONSE_CODE} from "@/http-response-code";
+
 import PrimeVue from 'primevue/config';
 import Button from 'primevue/button';
 import InputText from "primevue/inputtext";
@@ -14,19 +15,31 @@ import Fieldset from 'primevue/fieldset';
 import Menubar from 'primevue/menubar';
 import Divider from 'primevue/divider';
 import Textarea from 'primevue/textarea';
-import ToastService from 'primevue/toastservice';
-import Toast from 'primevue/toast';
-import 'primevue/resources/primevue.min.css'
-import 'primevue/resources/themes/bootstrap4-light-blue/theme.css'
-import 'primeicons/primeicons.css'
 
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css';
+
+import "primevue/resources/themes/saga-blue/theme.css";
+import "primevue/resources/primevue.min.css";
+import "primeicons/primeicons.css";
+import {showToast} from "@/components/toast";
 const BASE_URL: string = "http://localhost:8080";
 axios.defaults.baseURL = BASE_URL;
+
+// const toast = useToast();
+
+const sendApiResponseError = (error: any) => {
+    showToast('Ошибка', error);
+}
+
+const sendApiRequestError = (error: any) => {
+    showToast('Ошибка', error);
+}
 
 axios.interceptors.request.use(
     (requestConfig) => {
         const token: string | null = localStorage.getItem('token');
-        if (requestConfig.baseURL && BASE_URL.localeCompare(requestConfig.baseURL) === 0 && token) {
+        if (requestConfig.baseURL && !BASE_URL.localeCompare(requestConfig.baseURL) && token) {
             requestConfig.headers['Authorization'] = 'Bearer ' + token;
         }
         return requestConfig;
@@ -88,7 +101,6 @@ app.use(router)
     .use(store)
     .use(PrimeVue)
     .use(vuetify)
-    .use(ToastService)
 
 app.component('Button', Button);
 app.component("InputText", InputText);
@@ -98,18 +110,7 @@ app.component("Fieldset", Fieldset);
 app.component("Textarea", Textarea);
 app.component("Divider", Divider);
 app.component("Menubar", Menubar);
-app.component("Toast", Toast);
 
 app.mount('#app')
-
-// const toast = useToast();
-
-const sendApiResponseError = (error: any) => {
-    // toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
-}
-
-const sendApiRequestError = (error: any) => {
-    // toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
-}
 
 

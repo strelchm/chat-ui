@@ -31,7 +31,7 @@
     import {parseDateFromUtc} from "@/components/common";
     import moment from "moment";
     import {defineComponent} from "vue";
-    import {useToast} from "primevue/usetoast";
+    import {showToast} from "@/components/toast";
 
     export default defineComponent({
         name: "MessageList",
@@ -44,7 +44,6 @@
 
             const route = useRoute();
             const store = useStore();
-            const toast = useToast();
 
             const roomId: any = route.params.roomId;
 
@@ -57,14 +56,7 @@
                 (state) => {
                     loadDataOrGetFromCache(state);
 
-                    console.log("''''''''" + roomId)
-                    console.log(state)
-                    console.log(state.get(roomId))
                     newMessage = state.get(roomId)
-                    console.log("changed~")
-                    console.log(state.get(roomId))
-                    console.log(newMessage)
-                    console.log("changed~++++++")
                 },
                 {deep: true}
             );
@@ -99,7 +91,7 @@
                         }
                     })
                     .catch(error => {
-                        toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
+                        showToast('Ошибка', error);
                         console.error("messages get error : " + error);
                     })
                     .finally(() => {
@@ -121,7 +113,6 @@
             let stompClient = store.getters.getStompClient
 
             let addMessage = () => {
-                toast.add({severity: 'error', summary: '1111', detail: "1111", life: 3000});
                 if (stompClient && stompClient.connected) {
                     let mess: any = {};
                     mess.roomId = roomId;
@@ -133,7 +124,6 @@
             }
 
             loadDataOrGetFromCache(store.getters.getMessageMap);
-
 
             return {
                 messages,

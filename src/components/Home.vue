@@ -1,3 +1,4 @@
+import {ToastType} from "@/components/toast";
 import {RoomDtoTypeEnum} from "@/api";
 <template>
     <div class="cards">
@@ -24,7 +25,7 @@ import {RoomDtoTypeEnum} from "@/api";
     import {useStore} from "vuex";
     import {Message} from "webstomp-client";
     import {parseDateFromUtc} from "@/components/common";
-    import {useToast} from "primevue/usetoast";
+    import {showToast, ToastType} from "@/components/toast";
 
     export default {
         name: "Home",
@@ -32,7 +33,6 @@ import {RoomDtoTypeEnum} from "@/api";
         setup() {
             const router = useRouter();
             const store = useStore();
-            const toast = useToast();
 
             const API: RoomControllerApi = new RoomControllerApi(
                 new Configuration(),
@@ -61,21 +61,20 @@ import {RoomDtoTypeEnum} from "@/api";
                                         (String(router.currentRoute.value.params.roomId).localeCompare("00000000-0000-0000-0000-000000000000")
                                         || !v.id || String(router.currentRoute.value.params.roomId).localeCompare( v.id))
                                     )) {
-                                        toast.add({severity: 'success', summary: 'Сообщение из ' + v.name, detail: tick.body, life: 3000});
+                                        showToast('Сообщение из ' + v.name, tick.body, ToastType.SUCCESS, 3000);
                                     }
                                 });
                             });
 
                             store.getters.getStompClient.subscribe("/user/chat/error", (tick: Message) => {
-                                console.log("ws error: " + tick.body)
-                                toast.add({severity: 'error', summary: 'Ошибка', detail: tick.body, life: 3000});
+                                showToast('Ошибка', tick.body);
                             });
 
                             store.dispatch("setSubscribed", true)
                         }
                     })
                     .catch(error => {
-                        toast.add({severity: 'error', summary: 'Ошибка', detail: error, life: 3000});
+                        showToast('Ошибка', error);
                         console.error("rooms get error : " + error);
                     })
                     .finally(() => {

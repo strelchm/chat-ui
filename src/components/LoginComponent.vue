@@ -1,3 +1,4 @@
+import {ToastType} from "@/components/toast";
 <template>
     <div class="container" style="display: flex; flex-direction: column; justify-items: center; align-items: center; height:100%">
         <div style="align-self: center; justify-self:center;">
@@ -17,7 +18,7 @@
     import {LoginRequestDto} from "@/api";
     import {reactive} from "vue";
     import {useRouter} from "vue-router";
-    import {useToast} from "primevue/usetoast";
+    import {showToast, ToastType} from "@/components/toast";
 
     class LoginDtoImpl implements LoginRequestDto {
     }
@@ -27,20 +28,20 @@
         setup() {
             const store = useStore();
             const router = useRouter();
-            const toast = useToast();
             let input: LoginRequestDto = reactive(new LoginDtoImpl());
             let login = () => {
                 store.dispatch("logIn", input)
                     .then(() => {
                         router.push("/") // редирект на домашнюю странцу todo {strelchm}
                         // ctx.root.$router.go(-1); // редирект на предыдущую страницу
+                        showToast('Приветствие', "Добро пожаловать, " + input.login, ToastType.SUCCESS, 3000);
+
                     })
                     .catch((err: any) => {
-                        toast.add({severity: 'error', summary: 'Ошибка', detail: err, life: 3000});
+                        showToast('Ошибка', err);
                         console.error("error during login action: " + err);
                     })
                     .finally(() => {
-                        toast.add({severity: 'success', summary: 'Приветствие', detail: "Добро пожаловать, " + input.login, life: 3000});
                     });
             }
             return {
