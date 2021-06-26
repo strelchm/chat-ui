@@ -58,8 +58,8 @@ import {RoomDtoTypeEnum} from "@/api";
                                     store.dispatch("setMessages", {roomId: v.id, messages: JSON.parse(tick.body)});
                                     if (router.currentRoute.value.name && (
                                         String(router.currentRoute.value.name).localeCompare('MessageList') ||
-                                        (String(router.currentRoute.value.params.roomId).localeCompare("00000000-0000-0000-0000-000000000000")
-                                        || !v.id || String(router.currentRoute.value.params.roomId).localeCompare( v.id))
+                                        (!v.id || String(router.currentRoute.value.params.roomId).localeCompare( v.id) ||
+                                        String(router.currentRoute.value.params.roomId).localeCompare("00000000-0000-0000-0000-000000000000"))
                                     )) {
                                         showToast('Сообщение из ' + v.name, tick.body, ToastType.SUCCESS, 3000);
                                     }
@@ -67,14 +67,14 @@ import {RoomDtoTypeEnum} from "@/api";
                             });
 
                             store.getters.getStompClient.subscribe("/user/chat/error", (tick: Message) => {
-                                showToast('Ошибка', tick.body);
+                                showToast('Ошибка dc', tick.body);
                             });
 
                             store.dispatch("setSubscribed", true)
                         }
                     })
                     .catch(error => {
-                        showToast('Ошибка', error);
+                        // showToast('Ошибка4', error);
                         console.error("rooms get error : " + error);
                     })
                     .finally(() => {
