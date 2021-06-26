@@ -43,35 +43,45 @@ import {RoomDtoTypeEnum} from "@/api";
             let rooms: Ref<RoomDto[]> = ref([]);
 
             let loadData = () => {
+                let subscribes: Map<string, boolean> = store.getters.getSubscribes;
                 API.getAllRoomsUsingGET()
                     .then((response) => {
                         rooms.value = response.data;
 
-                        if (!store.getters.isSubscribed) {
-                            rooms.value.forEach(v => {
-                                // store.dispatch("subscribe", v.id)
-                                const topic: string = v.type === RoomDtoTypeEnum.BOT ?
-                                    "/user/chat/room/00000000-0000-0000-0000-000000000000" :
-                                    "/chat/room/" + v.id;
-                                // context.rootState.instance.session
+                        // if (!store.getters.isSubscribed) {
+                        rooms.value.forEach(v => {
+                            // store.dispatch("subscribe", v.id)
+                            const topic: string = v.type === RoomDtoTypeEnum.BOT ?
+                                "/user/chat/room/00000000-0000-0000-0000-000000000000" :
+                                "/chat/room/" + v.id;
+                            // context.rootState.instance.session
+                            let roomIdString: string | undefined = v.type === RoomDtoTypeEnum.BOT ? "00000000-0000-0000-0000-000000000000" : v.id;
+                            if (roomIdString && !subscribes.get(roomIdString)) {
                                 store.getters.getStompClient.subscribe(topic, (tick: Message) => {
                                     store.dispatch("setMessages", {roomId: v.id, messages: JSON.parse(tick.body)});
                                     if (router.currentRoute.value.name && (
-                                        String(router.currentRoute.value.name).localeCompare('MessageList') ||
-                                        (!v.id || String(router.currentRoute.value.params.roomId).localeCompare( v.id) ||
-                                        String(router.currentRoute.value.params.roomId).localeCompare("00000000-0000-0000-0000-000000000000"))
+                                        String(router.currentRoute.value.name).localeCompare('MessageList') !== 0 ||
+                                        !roomIdString || String(router.currentRoute.value.params.roomId).localeCompare(roomIdString) !== 0
                                     )) {
+                                    console.debug("--- " + router.currentRoute.value.params.roomId + " --- " +roomIdString)
+                                    console.debug(String(router.currentRoute.value.name).localeCompare('MessageList') !== 0)
+                                        if (roomIdString != null) {
+                                            console.log(String(router.currentRoute.value.params.roomId).localeCompare(roomIdString) !== 0)
+                                        }
+                                    console.debug(String(router.currentRoute.value.params.roomId).localeCompare("00000000-0000-0000-0000-000000000000") !== 0)
                                         showToast('Сообщение из ' + v.name, tick.body, ToastType.SUCCESS, 3000);
                                     }
+                                    store.dispatch("roomSubscribed", {id: roomIdString, subs: true});
                                 });
-                            });
+                            }
+                        });
 
-                            store.getters.getStompClient.subscribe("/user/chat/error", (tick: Message) => {
-                                showToast('Ошибка dc', tick.body);
-                            });
+                        store.getters.getStompClient.subscribe("/user/chat/error", (tick: Message) => {
+                            showToast('Ошибка dc', tick.body);
+                        });
 
-                            store.dispatch("setSubscribed", true)
-                        }
+                        store.dispatch("setSubscribed", true)
+                        // }
                     })
                     .catch(error => {
                         // showToast('Ошибка4', error);

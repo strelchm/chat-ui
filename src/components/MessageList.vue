@@ -44,7 +44,6 @@
 
             const route = useRoute();
             const store = useStore();
-
             const roomId: any = route.params.roomId;
 
             let messages: Ref<MessageDto[] | undefined> = ref([]);
@@ -116,7 +115,9 @@
                 if (stompClient && stompClient.connected) {
                     let mess: any = {};
                     mess.roomId = roomId;
-                    mess.userId = "00000000-0000-0000-0000-000000000000";
+                    console.debug("self");
+                    console.debug(store.getters.getSelf);
+                    mess.userId = store.getters.getSelf.id;
                     mess.text = messageText.value;
                     mess.created = moment.now().toString();
                     stompClient.send("/app/room/" + roomId, JSON.stringify(mess), {'token': localStorage.getItem('token')});

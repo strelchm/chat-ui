@@ -15,10 +15,11 @@ import {ToastType} from "@/components/toast";
 
 <script lang="ts">
     import {useStore} from "vuex";
-    import {LoginRequestDto} from "@/api";
+    import {Configuration, LoginRequestDto, UserControllerApi} from "@/api";
     import {reactive} from "vue";
     import {useRouter} from "vue-router";
     import {showToast, ToastType} from "@/components/toast";
+    import axios from "axios";
 
     class LoginDtoImpl implements LoginRequestDto {
     }
@@ -29,12 +30,33 @@ import {ToastType} from "@/components/toast";
             const store = useStore();
             const router = useRouter();
             let input: LoginRequestDto = reactive(new LoginDtoImpl());
+            const API: UserControllerApi = new UserControllerApi(
+                new Configuration(),
+                axios.defaults.baseURL,
+                axios
+            );
             let login = () => {
                 store.dispatch("logIn", input)
                     .then(() => {
                         router.push("/") // редирект на домашнюю странцу todo {strelchm}
                         // ctx.root.$router.go(-1); // редирект на предыдущую страницу
                         showToast('Приветствие', "Добро пожаловать, " + input.login, ToastType.SUCCESS, 3000);
+
+                        // let loadData = () => {
+                            API.getSelfUsingPOST()
+                                .then((response) => {
+                                    store.dispatch("updateUser", response.data);
+                                })
+                                .catch(error => {
+                                    console.error("rooms get error : " + error);
+                                })
+                                .finally(() => {
+                                    console.debug("User is : ");
+                                    console.debug(store.getters.getSelf);
+                                });
+                        // };
+                        //
+                        // loadData();
 
                     })
                     .catch((err: any) => {

@@ -4,6 +4,7 @@ import credentials from "@/store/credentials";
 import ws from "@/store/ws";
 import messages from "@/store/message-holder";
 import usr from "@/store/usr";
+import subscribes from "@/store/subscribes";
 
 // @ts-ignore
 export default createStore({
@@ -19,6 +20,7 @@ export default createStore({
       ws,
       // @ts-ignore
       messages,
-      usr
+      usr,
+      subscribes
     }
 })

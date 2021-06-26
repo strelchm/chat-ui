@@ -1,7 +1,10 @@
 <template>
     <div>
-        <Menubar :model="navBarItems">
-            <template #start>Чат</template>
+        <Menubar>
+            <template #start>
+                <router-link to="/" class="router-link">Чаты</router-link>
+                <router-link to="/users" class="router-link">Пользователи</router-link>
+            </template>
 
             <template #end>
                 <Button v-if="isLogOutButVisible" icon="pi pi-sign-out" @click="logout" class="p-button-secondary" label="Выход"/>
@@ -45,29 +48,6 @@
                 store.dispatch("logOut"); // logout
                 router.push('/login');
             };
-
-            // const API: UserControllerApi = new UserControllerApi(
-            //     new Configuration(),
-            //     axios.defaults.baseURL,
-            //     axios
-            // );
-
-            // let loadData = () => {
-            //     API.getSelfUsingPOST()
-            //         .then((response) => {
-            //             store.dispatch("updateUser", response.data);
-            //
-            //             console.log(response.data)
-            //         })
-            //         .catch(error => {
-            //             console.error("rooms get error : " + error);
-            //         })
-            //         .finally(() => {
-            //             // alert("loading finished!");
-            //         });
-            // };
-            //
-            // loadData();
 
             return {
                 logout,
