@@ -56,6 +56,12 @@ export interface MessageDto {
      * @memberof MessageDto
      */
     userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageDto
+     */
+    userLogin?: string;
 }
 
 

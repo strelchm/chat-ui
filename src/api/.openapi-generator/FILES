@@ -1,6 +1,5 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 api.ts
 api/basic-error-controller-api.ts
 api/login-controller-api.ts

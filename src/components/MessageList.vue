@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Fieldset :toggleable="true" :collapsed="true">
+        <Fieldset :toggleable="true" :collapsed="true" style="margin-top: 10px">
             <template #legend>Добавить сообщение</template>
             <div style="display: flex; flex-direction: column;">
-                <Textarea style="width: 100%" v-model="messageText" :autoResize="true"/>
+                <Textarea style="width: 100%; margin: 0 !importnt" v-model="messageText" :autoResize="true"/>
                 <Button style="margin-top: 10px; max-width: 150px; align-self: center !important;" icon="pi pi-check"
                         @click="addMessage" label="Добавить"/>
             </div>
@@ -11,13 +11,15 @@
         <!--        <v-container style="display: flex; flex-direction: row; justify-items: center; align-items: center;">-->
         <!--        </v-container>-->
         <Divider type="dashed"/>
-        <Card class="container" v-for="message in messages" :key="message.id">
-            <template #header style="text-align: end">Пользователь: {{message.userId}}</template>
-            <template #subtitle style="text-align: end; margin: 0px">{{parseDateFromUtc(message.created)}}</template>
-            <template #content>
-                <p style="margin: 5px; font-size: 30px">{{message.text}}</p>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; justify-items: flex-end;">
+        <Card :style="getMessageStyle(message)" v-for="message in messages" :key="message.id">
+            <template #header style="text-align: end; margin: 0px">
+                <p style="text-align: end; margin-right: 5px">Пользователь: {{message.userLogin}}</p>
+                <p style="text-align: end; margin-right: 5px">{{parseDateFromUtc(message.created)}}</p>
+                <div style="font-size: 25px; font-weight: bold">{{message.text}}</div>
             </template>
         </Card>
+        </div>
     </div>
 </template>
 
@@ -26,12 +28,10 @@
     import axios from "axios";
     import {useRoute} from "vue-router";
     import {Ref} from "@vue/reactivity";
-    import {reactive, ref, watch} from "vue";
+    import {computed, defineComponent, reactive, ref, watch} from "vue";
     import {useStore} from "vuex";
     import {parseDateFromUtc} from "@/components/common";
     import moment from "moment";
-    import {defineComponent} from "vue";
-    import {showToast} from "@/components/toast";
 
     export default defineComponent({
         name: "MessageList",
@@ -45,6 +45,8 @@
             const route = useRoute();
             const store = useStore();
             const roomId: any = route.params.roomId;
+
+            let currentUser = computed(() => store.getters.getSelf);
 
             let messages: Ref<MessageDto[] | undefined> = ref([]);
             let messageText: Ref<string> = ref('');
@@ -90,7 +92,7 @@
                         }
                     })
                     .catch(error => {
-                        showToast('Ошибка', error);
+                        // showToast('Ошибка', error);
                         console.error("messages get error : " + error);
                     })
                     .finally(() => {
@@ -126,12 +128,23 @@
 
             loadDataOrGetFromCache(store.getters.getMessageMap);
 
+            let getMessageStyle = (message: any) => {
+                console.log(currentUser.value.id + "  |||| " + message.userId)
+                let str = 'width: 50%; margin: 3px; max-height: 150px !important; ';
+                let str2 = currentUser.value && message.userId && currentUser.value.id.localeCompare(message.userId) ?
+                    'align-self: flex-end; justify-self: flex-end' :
+                    'align-self: flex-start; justify-self: flex-start';
+                return str + str2;
+            }
+
             return {
                 messages,
                 addMessage,
                 messageText,
                 newMessage,
-                parseDateFromUtc
+                parseDateFromUtc,
+                currentUser,
+                getMessageStyle
             }
 
         }
@@ -187,5 +200,32 @@
     .time-left {
         float: left;
         color: #999;
+    }
+
+    .p-card > * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .p-card .p-card-subtitle {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .p-card .p-card-title {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .p-card .p-card-content {
+        height: 100px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .p-card .p-card-body {
+        height: 0px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 </style>

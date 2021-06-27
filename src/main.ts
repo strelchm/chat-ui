@@ -57,8 +57,9 @@ axios.interceptors.response.use(
     },
     error => {
         if (error.response) {
-            if ((error.response.status === UNAUTHORIZED_RESPONSE_CODE || error.response.status === FORBIDDEN_RESPONSE_CODE) && store.getters.isLogged) {
+            if ((error.response.status === UNAUTHORIZED_RESPONSE_CODE.code || error.response.status === FORBIDDEN_RESPONSE_CODE.code) && store.getters.isLogged) {
                 store.dispatch("logOut");
+                router.push("login").catch(reason => console.warn("axios.interceptors.response: " + reason));
                 console.warn("axios.interceptors.response: logout with 401 / 403 code cause");
             } else if (error.response.status >= 300) {
                 if (!store.getters.isLogged) {

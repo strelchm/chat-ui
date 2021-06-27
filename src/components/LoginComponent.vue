@@ -60,7 +60,7 @@ import {ToastType} from "@/components/toast";
 
                     })
                     .catch((err: any) => {
-                        showToast('Ошибка', err);
+                        // showToast('Ошибка', err);
                         console.error("error during login action: " + err);
                     })
                     .finally(() => {
