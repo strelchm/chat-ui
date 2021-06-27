@@ -129,7 +129,6 @@
             loadDataOrGetFromCache(store.getters.getMessageMap);
 
             let getMessageStyle = (message: any) => {
-                console.log(currentUser.value.id + "  |||| " + message.userId)
                 let str = 'width: 50%; margin: 3px; ';
                 let str2 = currentUser.value && message.userId && currentUser.value.id.localeCompare(message.userId) ?
                     'align-self: flex-end; justify-self: flex-end' :
