@@ -1,4 +1,4 @@
-# chat-ui
+# chat-ui 4 SimbirSoft intership
 Ui for chat project
 
 
